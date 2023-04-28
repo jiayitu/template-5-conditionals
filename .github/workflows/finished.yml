@@ -1,0 +1,21 @@
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  finished-assignment:
+    
+    if: github.event.review.state == 'approved'
+    
+    runs-on: ubuntu-latest
+    
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            You have finished this assignment! Move on to the next: https://classroom.github.com/a/lsZefz_H
